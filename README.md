@@ -1,18 +1,18 @@
 <p align="center">
-    <img src="https://github.com/garronej/keycloakify-demo-app/workflows/ci/badge.svg?branch=main">
+    <img src="https://github.com/ftntming/keycloakify-demo-app/workflows/ci/badge.svg?branch=main">
 </p>
 
 This repo constitutes an easily reusable CI setup for React App in general, and Apps that generates Keycloaks's theme 
 using [keycloakify](https://github.com/InseeFrLab/keycloakify) in particular.
 
-- This CI is configured to both publish on [github-pages](https://github.com/garronej/keycloakify-demo-app/blob/224c43383548635a463fa68e8909c147ac189f0e/.github/workflows/ci.yaml#L172-L187) and on [DockerHub](https://github.com/garronej/keycloakify-demo-app/blob/224c43383548635a463fa68e8909c147ac189f0e/.github/workflows/ci.yaml#L56-L94). In practice you probably want one
+- This CI is configured to both publish on [github-pages](https://github.com/ftntming/keycloakify-demo-app/blob/224c43383548635a463fa68e8909c147ac189f0e/.github/workflows/ci.yaml#L172-L187) and on [DockerHub](https://github.com/ftntming/keycloakify-demo-app/blob/224c43383548635a463fa68e8909c147ac189f0e/.github/workflows/ci.yaml#L56-L94). In practice you probably want one
 or the other but not both. 
 - To release **don't create a tag manually**, the CI do it for you. Just update the `package.json`'s version field and push.
 - The `.jar` files that bundle the Keycloak theme will be attached as an asset with every GitHub release. [Example](https://github.com/InseeFrLab/keycloakify-demo-app/releases/tag/v0.1.0). The permalink to download the latest version is: `https://github.com/USER/PROJECT/releases/latest/download/keycloak-theme.jar`. 
-  For this demo repo it's [here](https://github.com/garronej/keycloakify-demo-app/releases/latest/download/keycloak-theme.jar)
+  For this demo repo it's [here](https://github.com/ftntming/keycloakify-demo-app/releases/latest/download/keycloak-theme.jar)
 - The CI publishes the app docker image on DockerHub. `<org>/<repo>:main` for each **commit** on `main`, `<org>/<repo>:<feature-branch-name>` for each **pull-request** on `main`
   and when **releasing a new version**: `<org>/<repo>:latest` and `<org>/<repo>:X.Y.Z`
-  [See on DockerHub](https://hub.docker.com/r/garronej/keycloakify-demo-app/tags?page=1&ordering=last_updated)
+  [See on DockerHub](https://hub.docker.com/r/ftntming/keycloakify-demo-app/tags?page=1&ordering=last_updated)
 - A [CHANGELOG.md](https://github.com/InseeFrLab/keycloakify-demo-app/blob/main/CHANGELOG.md) will be maintained for you using the commit messages between releases. *If you don't want a specific commit to appear
   in the changelog do something like. `git commit -am "yadi yada (changelog ignore)`.*
 
@@ -23,7 +23,7 @@ or the other but not both.
 # About keycloakify
 
  This repo is currently configured to build the theme with  [`--external-assets`](https://github.com/InseeFrLab/keycloakify#specify-from-where-the-resources-should-be-downloaded). 
- If you want the theme to be standalone just remove `--external-assets` [here](https://github.com/garronej/keycloakify-demo-app/blob/f87f211c433d1520c9ecf66565c6b88779aa98ed/.github/workflows/ci.yaml#L139).
+ If you want the theme to be standalone just remove `--external-assets` [here](https://github.com/ftntming/keycloakify-demo-app/blob/f87f211c433d1520c9ecf66565c6b88779aa98ed/.github/workflows/ci.yaml#L139).
 
  If you want an example of an app that put that setup in production checkout onyxia-ui: [the repo](https://github.com/InseeFrLab/onyxia-ui), [the login](https://auth.lab.sspcloud.fr/auth/realms/sspcloud/protocol/openid-connect/auth?client_id=onyxia&redirect_uri=https%3A%2F%2Fonyxia.lab.sspcloud.fr), [the app](https://datalab.sspcloud.fr).  
 
@@ -36,11 +36,11 @@ repository ``Settings`` tab, then ``Secrets`` you will need to add two new secre
 # Docker
 
 ```bash
-docker build -f Dockerfile -t garronej/keycloakify-demo-app:test .
+docker build -f Dockerfile -t ftntming/keycloakify-demo-app:test .
 #OR:
-yarn && yarn build && tar -cvf build.tar ./build && docker build -f Dockerfile.ci -t garronej/keycloakify-demo-app:test . && rm build.tar
+yarn && yarn build && tar -cvf build.tar ./build && docker build -f Dockerfile.ci -t ftntming/keycloakify-demo-app:test . && rm build.tar
 
-docker run -it -dp 8083:80 garronej/keycloakify-demo-app:test
+docker run -it -dp 8083:80 ftntming/keycloakify-demo-app:test
 
 # http://localhost:8083/keycloakify-demo-app won't work because of the nginx.config for / and not /keycloakify-demo-app
 ```
